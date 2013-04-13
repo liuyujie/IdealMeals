@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2MS-V6-3Lg">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Mmeals-->
+        <scene sceneID="11">
+            <objects>
+                <viewController id="2" customClass="IMmeals" sceneMemberID="viewController">
+                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="4C4-mT-ZML">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </imageView>
+                    <tabBarItem key="tabBarItem" title="" image="first" id="7"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3204" y="468"/>
+        </scene>
+        <!--Mrecipies-->
+        <scene sceneID="zZ2-gQ-d49">
+            <objects>
+                <viewController id="Ydd-pt-doK" customClass="IMrecipies" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Is-W8-CpH">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sRp-30-Y77"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="tXu-MX-qJB" kind="push" id="Wnk-sx-BSm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21t-EO-WLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3366" y="1786"/>
+        </scene>
+        <!--Mhome-->
+        <scene sceneID="NH1-0Y-xfS">
+            <objects>
+                <viewController id="00b-TK-Szb" customClass="IMhome" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U81-kg-WSA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="About-screen.png" translatesAutoresizingMaskIntoConstraints="NO" id="4z1-kd-olD"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4z1-kd-olD" firstAttribute="top" secondItem="U81-kg-WSA" secondAttribute="top" type="default" id="BVk-uj-ojp"/>
+                            <constraint firstItem="4z1-kd-olD" firstAttribute="leading" secondItem="U81-kg-WSA" secondAttribute="leading" type="default" id="Yzy-34-QRq"/>
+                            <constraint firstItem="4z1-kd-olD" firstAttribute="trailing" secondItem="U81-kg-WSA" secondAttribute="trailing" type="default" id="ecH-gS-SLp"/>
+                            <constraint firstItem="4z1-kd-olD" firstAttribute="bottom" secondItem="U81-kg-WSA" secondAttribute="bottom" type="default" id="fUN-WV-baV"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="J3p-lW-z5s"/>
+                    <navigationItem key="navigationItem" id="Dlk-uu-EJU"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n08-fa-z0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2508" y="4284"/>
+        </scene>
+        <!--Mgrocery-->
+        <scene sceneID="13">
+            <objects>
+                <viewController id="3" customClass="IMgrocery" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="16">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="6"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="876"/>
+        </scene>
+        <!--Products-->
+        <scene sceneID="Nxc-au-WtM">
+            <objects>
+                <viewController id="sJJ-Kx-ghV" customClass="IMProducts" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QpM-Od-Hei">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bsa-z6-ffe"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="5Wq-Na-34q" kind="push" id="evM-yj-f40"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cf5-A3-3vA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3374" y="3051"/>
+        </scene>
+        <!--Product List-->
+        <scene sceneID="RXH-OK-Vbz">
+            <objects>
+                <viewController id="5Wq-Na-34q" customClass="IMProductList" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A4M-lU-D5v">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lME-w6-Kq1"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WF3-YJ-JQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4527" y="3036"/>
+        </scene>
+        <!--Mrecipie List-->
+        <scene sceneID="Rmn-9K-h6e">
+            <objects>
+                <viewController id="tXu-MX-qJB" customClass="IMrecipieList" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fVv-4a-rNu">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gfE-NR-na7"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <segue destination="gAR-jn-VPc" kind="push" id="nLa-1U-Uwc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Tg-Ch-Zio" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4520" y="1803"/>
+        </scene>
+        <!--Mrecipie Description-->
+        <scene sceneID="8f4-Tu-sM3">
+            <objects>
+                <viewController id="gAR-jn-VPc" customClass="IMrecipieDescription" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QlH-4b-hem">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="975"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UoU-Zt-xMa"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EFF-qw-9VL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5573" y="1792"/>
+        </scene>
+        <!--Mloading-->
+        <scene sceneID="WWL-MA-bEa">
+            <objects>
+                <viewController id="4vA-iz-Nti" customClass="IMloading" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BfF-t2-KEN">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysK-jp-9Lh"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ysK-jp-9Lh" firstAttribute="bottom" secondItem="BfF-t2-KEN" secondAttribute="bottom" type="default" id="AoI-uF-dug"/>
+                            <constraint firstItem="ysK-jp-9Lh" firstAttribute="leading" secondItem="BfF-t2-KEN" secondAttribute="leading" type="default" id="J7I-Tn-mtr"/>
+                            <constraint firstItem="ysK-jp-9Lh" firstAttribute="top" secondItem="BfF-t2-KEN" secondAttribute="top" type="default" id="hOO-o0-TKg"/>
+                            <constraint firstItem="ysK-jp-9Lh" firstAttribute="trailing" secondItem="BfF-t2-KEN" secondAttribute="trailing" type="default" id="uld-sn-2lf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jiv-Nr-h6e"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="Loading" destination="ysK-jp-9Lh" id="iKn-bU-aQm"/>
+                        <segue destination="4" kind="modal" identifier="loadingIpad" id="QiN-kk-ioA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Da6-8F-mf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1933" y="1769"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="15">
+            <objects>
+                <tabBarController id="4" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="5">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="viewControllers" id="27"/>
+                        <segue destination="3" kind="relationship" relationship="viewControllers" id="28"/>
+                        <segue destination="180-HV-bpF" kind="relationship" relationship="viewControllers" id="mcB-LB-kcM"/>
+                        <segue destination="gNT-7K-Lco" kind="relationship" relationship="viewControllers" id="WvH-Ax-5gp"/>
+                        <segue destination="00b-TK-Szb" kind="relationship" relationship="viewControllers" id="83b-zX-Xah"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-849" y="1762"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CLg-3P-cuv">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="2MS-V6-3Lg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jsr-dU-57H">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4vA-iz-Nti" kind="relationship" relationship="rootViewController" id="1cn-fm-Bz5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7u7-Eo-Hrm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2873" y="1769"/>
+        </scene>
+        <!--Navigation Controller - 3-->
+        <scene sceneID="NaF-Qm-waZ">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="180-HV-bpF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="3" id="HEv-Zr-57G"/>
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bxh-kf-TkG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ydd-pt-doK" kind="relationship" relationship="rootViewController" id="BvB-oZ-RGs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Suu-9K-TUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2392" y="1786"/>
+        </scene>
+        <!--Navigation Controller - 4-->
+        <scene sceneID="s50-rr-GQD">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="gNT-7K-Lco" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="4" id="etF-cr-QcB"/>
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p3h-3L-N6t">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sJJ-Kx-ghV" kind="relationship" relationship="rootViewController" id="NDy-Jg-cEo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yhc-cF-1sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2352" y="3059"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="About-screen.png" width="1536" height="1951"/>
+        <image name="first" width="16" height="16"/>
+    </resources>
+    <classes>
+        <class className="IMProductList" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMProductList.h"/>
+            <relationships>
+                <relationship kind="action" name="addToCalander:"/>
+                <relationship kind="action" name="backButton:"/>
+                <relationship kind="outlet" name="addToMeal" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollview" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="IMProducts" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMProducts.h"/>
+            <relationships>
+                <relationship kind="action" name="Alphabetical:"/>
+                <relationship kind="action" name="bars:"/>
+                <relationship kind="action" name="chips:"/>
+                <relationship kind="action" name="drinks:"/>
+                <relationship kind="action" name="entrees:"/>
+                <relationship kind="action" name="productListRestricted:"/>
+                <relationship kind="action" name="productListUnrestricted:"/>
+                <relationship kind="action" name="puddings:"/>
+                <relationship kind="action" name="puffs:"/>
+                <relationship kind="outlet" name="ALphaPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="RestrictedPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="UnrestrictedPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="barsPl" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="chipsPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="drinksPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="entreesPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="puddingsPL" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="puffsPL" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="IMgrocery" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMgrocery.h"/>
+            <relationships>
+                <relationship kind="action" name="addAIngridient:"/>
+                <relationship kind="action" name="clearDatabase:"/>
+                <relationship kind="action" name="email:"/>
+                <relationship kind="outlet" name="addButtonGrocery" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="clearButtonGrocery" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="emailButtonGrocery" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="menuView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="IMhome" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMhome.h"/>
+            <relationships>
+                <relationship kind="action" name="check:"/>
+                <relationship kind="action" name="website:"/>
+            </relationships>
+        </class>
+        <class className="IMloading" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMloading.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Loading" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="IMmeals" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMmeals.h"/>
+            <relationships>
+                <relationship kind="action" name="nextMonth:"/>
+                <relationship kind="action" name="prevMonth:"/>
+                <relationship kind="outlet" name="accessory1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="accessory2" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="accessory3" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="accessory4" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="bottomViewRight" candidateClass="UIView"/>
+                <relationship kind="outlet" name="calView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="deleteButton1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="deleteButton2" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="deleteButton3" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="deleteButton4" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="left" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="monthTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="right" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="IMrecipieDescription" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMrecipieDescription.h"/>
+            <relationships>
+                <relationship kind="action" name="bckButton:"/>
+            </relationships>
+        </class>
+        <class className="IMrecipieList" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMrecipieList.h"/>
+            <relationships>
+                <relationship kind="action" name="backButton:"/>
+                <relationship kind="action" name="searchButton:"/>
+                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="IMrecipies" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IMrecipies.h"/>
+            <relationships>
+                <relationship kind="action" name="allRecipies:"/>
+                <relationship kind="action" name="healthy:"/>
+                <relationship kind="action" name="phase1:"/>
+                <relationship kind="action" name="phase3:"/>
+                <relationship kind="outlet" name="allRecipies" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="healthRecipies" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="phase1Recipies" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="phase3Recipies" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
