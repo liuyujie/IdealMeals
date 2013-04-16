@@ -27,8 +27,8 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
     {
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         {
-            [self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Meals-2.png"]
-                          withFinishedUnselectedImage:[UIImage imageNamed:@"Meals.png"]];
+            [self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"Meals-21.png"]
+                          withFinishedUnselectedImage:[UIImage imageNamed:@"Meals21.png"]];
         }else
         {
         
@@ -432,14 +432,22 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
 	
     CGFloat orgx;
     CGFloat orgy;
+    CGRect dayVFrame;
     // this is the placeholder for the calendar
 	UIView *calendarContainer = calView.superview;
 	// main view (screen view)
     UIView *view ;
     // [view setFrame:CGRectMake(0, 0, 300, 400)];
 	view = calendarContainer.superview;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+          dayVFrame = CGRectMake(0, 200, self.calView.frame.size.width, self.calView.frame.size.height);
+    }
+    else
+    {
+      dayVFrame = CGRectMake(0, 96, self.calView.frame.size.width, self.calView.frame.size.height); 
+    }
 	
-	CGRect dayVFrame = CGRectMake(0, 96, self.calView.frame.size.width, self.calView.frame.size.height);
 	//CGRect dayVFrame = CGRectMake(0, 0,300,400) ;
 	// creating a new calendar, I will add all the days in this view
 	[calView removeFromSuperview];
@@ -453,7 +461,14 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
 	// setting up the month title
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	[df setDateFormat:@"MMMM yyyy"];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        monthTitle.font=[UIFont systemFontOfSize:35];
+        
+    }else
+    {
     monthTitle.font=[UIFont systemFontOfSize:20];
+    }
     monthTitle.textColor=[self getColorByRed:46 green:79 blue:103];
 	NSString *rg=[df stringFromDate:currentDate];
     [monthTitle setText:[rg uppercaseString]];
@@ -475,6 +490,16 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
 	int lessDay = [components day];
 	int month = [components month];
 	int year = [components year];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        
+        orgx=55;
+        orgy=43;
+    }
+    else
+    {
+    
 	CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568)
     {
@@ -486,7 +511,7 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
 	
         orgx=16;
         orgy=0;
-	}
+	}}
 	int m=month;
 	for (int week=0; week<6 && month==m; week++)
 	{
@@ -531,28 +556,42 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
 			}
         
 			[calView addSubview:button];
-			
+           // calView.userInteractionEnabled=YES;
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+            {
+                orgx+=94;
+            }else
+            {
 			orgx+=42;
-			lessDay++;
+			}
+                lessDay++;
 		}
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        {
+            
+            orgx=55;
+            orgy+=100;
+        }
+        else{
 		orgy+=48;
 		orgx=16;
-		
-		[components setDay:lessDay];
+        }
+				[components setDay:lessDay];
 		m =[[calendar components:units fromDate:[calendar dateFromComponents:components]] month];
 	}
 	
 	[self.left setFrame:CGRectMake(0, 10, 20, 20)];
 	//[UIView beginAnimations: nil context: nil];
 	//[UIView setAnimationDuration: 1.5];
-	
+	//NSLog(@"%f",orgx);
+    //NSLog(@"%f",orgy);
 	[self.calView setFrame:CGRectMake(self.calView.frame.origin.x,
 									  self.calView.frame.origin.y,
 									  self.calView.frame.size.width,
 									  orgy)];
    
-	
-	//[calView.layer removeAllAnimations];
+	//[calView setBackgroundColor:[UIColor redColor]];
+//	[calView.layer removeAllAnimations];
 	//put the height of the header;
 	orgy += calendarContainer.frame.origin.y;
 	int remaningH = view.frame.size.height-orgy;
@@ -601,12 +640,27 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
     [button1 setTag:buttonTag];
     //[button1 setTitleColor:[self getColorByRed:141 green:148 blue:157] forState:UIControlStateNormal];
      [button1 setTitleColor:[self getColorByRed:46 green:79 blue:103] forState:UIControlStateNormal];
-	
-	[button1.titleLabel setFont:[UIFont boldSystemFontOfSize:20.0f]];
-	[button1 addTarget:self action:@selector(showDateOnClickAndSave:) forControlEvents:UIControlEventTouchUpInside];
+	button1.userInteractionEnabled=YES;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+	[button1.titleLabel setFont:[UIFont boldSystemFontOfSize:30]];
+	}
+    else
+    {
+        [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    }
+    
+    [button1 addTarget:self action:@selector(showDateOnClickAndSave:) forControlEvents:UIControlEventTouchUpInside];
   
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        
+        button1.frame=CGRectMake(orgx, orgy, 94, 100);
+        
+    }else{
 	button1.frame=CGRectMake(orgx, orgy, 38, 45);
-   
+    }
     
     int occurrences = 0;
     
@@ -927,6 +981,242 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
 
 -(void)addAView
 {
+    
+    if ([[UIDevice currentDevice]userInterfaceIdiom]==UIUserInterfaceIdiomPad) {
+        
+        dayImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 768 , 975)];
+        [dayImageView setImage:[UIImage imageNamed:@"My-calendar.jpg"]];
+        
+        monthImage=[[UIImageView alloc]initWithFrame:CGRectMake(126  , 900, 183, 44)];
+        [monthImage setImage:[UIImage imageNamed:@"Day-month2.png"]];
+        [dayImageView addSubview:monthImage];
+        monthButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        monthButton=[[UIButton alloc]initWithFrame:CGRectMake(217, 900, 91, 44)];
+        // [monthButton setBackgroundImage:[UIImage imageNamed:@"IM_current-date_box-50.png"]forState:UIControlStateNormal];
+        [monthButton addTarget:self action:@selector(monthSelected) forControlEvents:UIControlEventTouchUpInside];
+        [dayImageView addSubview:monthButton];
+        mailButton=[[UIButton alloc]initWithFrame:CGRectMake(335, 195, 100    , 90)];
+        [mailButton setBackgroundImage:[UIImage imageNamed:@"IM__0001_Vector-Smart-Object.png"]forState:UIControlStateNormal];
+        [mailButton setBackgroundImage:[UIImage imageNamed:@"IM__0000_Vector-Smart-Object-copy-5.png"]forState:UIControlStateHighlighted];
+        [mailButton addTarget:self action:@selector(savePopUp) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [dayImageView addSubview:mailButton];
+        dateLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 130, 468, 50)];
+        [dateLabel setBackgroundColor:[UIColor clearColor]];
+        dateLabel.textAlignment=UITextAlignmentCenter;
+        dateLabel.textColor=[self getColorByRed:46 green:79 blue:103];
+        dateLabel.font = [UIFont systemFontOfSize:35];
+        [dayImageView addSubview:dateLabel];
+        
+        
+        
+        addAMeal=[[UIButton alloc]initWithFrame:CGRectMake(400, 900, 100, 44)];
+        [addAMeal setBackgroundImage:[UIImage imageNamed:@"IM_addmeal-button.png"]forState:UIControlStateNormal];
+        [addAMeal setBackgroundImage:[UIImage imageNamed:@"IM_addmeal-button-press.png"]forState:UIControlStateHighlighted];
+        [addAMeal addTarget:self action:@selector(pushMyNewViewController) forControlEvents:UIControlEventTouchUpInside];
+        [addAMeal setExclusiveTouch:YES];
+        [dayImageView addSubview:addAMeal];
+        
+        
+        breakfastImage=[[UIImageView alloc]initWithFrame:CGRectMake(115, 320, 540, 100)];
+        [breakfastImage setImage:[UIImage imageNamed:@"IM__0005_BREAKFAST.png"]];
+        breakfastImage.userInteractionEnabled=YES;
+        [dayImageView addSubview:breakfastImage];
+        
+        
+        LeftGesturesRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(accessoryPressed1)];
+        [LeftGesturesRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionLeft)];
+        [breakfastImage addGestureRecognizer:LeftGesturesRecognizer];
+        
+        breakfastLabel=[[UILabel alloc]initWithFrame:CGRectMake(140, 0, 390, 100)];
+        breakfastLabel.textColor=[UIColor blackColor];
+        [breakfastLabel setBackgroundColor:[UIColor blackColor]];
+        breakfastLabel.textAlignment=UITextAlignmentLeft;
+        breakfastLabel.numberOfLines=3;
+        //[breakfastLabel setFont:[UIFont systemFontOfSize:30]];
+        breakfastLabel.text=breakfastString;
+        if ([breakfastString isEqualToString:@"(null)"]||[breakfastString isEqualToString:@""]) {
+            breakfastLabel.text=@"Nothing planned.";
+            breakfastLabel.textColor=[UIColor lightGrayColor];
+            breakfastLabel.textAlignment=UITextAlignmentCenter;
+        }
+        
+        
+        breakfastLabel.font = [UIFont systemFontOfSize:22];
+        
+        
+        [breakfastImage addSubview:breakfastLabel];
+        
+        
+        
+        lunchImage=[[UIImageView alloc]initWithFrame:CGRectMake(115, 430, 540, 100)];
+        [lunchImage setImage:[UIImage imageNamed:@"IM__0004_LUNCH.png"]];
+        lunchImage.userInteractionEnabled=YES;
+        [dayImageView addSubview:lunchImage];
+        
+        
+        
+        lunchLabel=[[UILabel alloc]initWithFrame:CGRectMake(140, 0, 390, 100)];
+        lunchLabel.textColor=[UIColor blackColor];
+        [lunchLabel setBackgroundColor:[UIColor clearColor]];
+        lunchLabel.textAlignment=UITextAlignmentLeft;
+        lunchLabel.numberOfLines=3;
+        lunchLabel.text=lunchString;
+        if ([lunchString isEqualToString:@"(null)"]||[lunchString isEqualToString:@""]) {
+            lunchLabel.text=@"Nothing planned.";
+            lunchLabel.textColor=[UIColor lightGrayColor];
+            lunchLabel.textAlignment=UITextAlignmentCenter;
+        }
+        
+        
+        lunchLabel.font = [UIFont systemFontOfSize:22];
+        
+        
+        [lunchImage addSubview:lunchLabel];
+        
+        LeftGesturesRecognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(accessoryPressed2)];
+        [LeftGesturesRecognizer1 setDirection:(UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionLeft)];
+        [lunchImage addGestureRecognizer:LeftGesturesRecognizer1];
+        
+        dinnerImage=[[UIImageView alloc]initWithFrame:CGRectMake(115, 540, 540, 100)];
+        [dinnerImage setImage:[UIImage imageNamed:@"IM__0003_DINNER.png"]];
+        dinnerImage.userInteractionEnabled=YES;
+        [dayImageView addSubview:dinnerImage];
+        
+        
+        
+        
+        dinnerLabel=[[UILabel alloc]initWithFrame:CGRectMake(140, 0, 390, 100)];
+        dinnerLabel.textColor=[UIColor blackColor];
+        [dinnerLabel setBackgroundColor:[UIColor clearColor]];
+        dinnerLabel.textAlignment=UITextAlignmentLeft;
+        dinnerLabel.text=dinnerString;
+        dinnerLabel.numberOfLines=3;
+        if ([dinnerString isEqualToString:@"(null)"]||[dinnerString isEqualToString:@""]) {
+            dinnerLabel.text=@"Nothing planned.";
+            dinnerLabel.textColor=[UIColor lightGrayColor];
+            dinnerLabel.textAlignment=UITextAlignmentCenter;
+        }
+        
+        
+        dinnerLabel.font = [UIFont systemFontOfSize:22];
+        
+        [dinnerImage addSubview:dinnerLabel];
+        
+        LeftGesturesRecognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(accessoryPressed3)];
+        [LeftGesturesRecognizer2 setDirection:(UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionLeft)];
+        [dinnerImage addGestureRecognizer:LeftGesturesRecognizer2];
+        
+        otherImage=[[UIImageView alloc]initWithFrame:CGRectMake(115, 650, 540, 100)];
+        [otherImage setImage:[UIImage imageNamed:@"IM__0002_OTHER.png"]];
+        otherImage.userInteractionEnabled=YES;
+        [dayImageView addSubview:otherImage];
+        
+        
+        
+        
+        otherLabel=[[UILabel alloc]initWithFrame:CGRectMake(140, 0, 390, 100)];
+        otherLabel.textColor=[UIColor blackColor];
+        [otherLabel setBackgroundColor:[UIColor clearColor]];
+        otherLabel.textAlignment=UITextAlignmentLeft;
+        otherLabel.numberOfLines=3;
+        otherLabel.text=otherString;
+        if ([otherString isEqualToString:@"(null)" ]||[otherString isEqualToString:@""]) {
+            otherLabel.text=@"Nothing planned.";
+            otherLabel.textColor=[UIColor lightGrayColor];
+            otherLabel.textAlignment=UITextAlignmentCenter;
+        }
+        
+        
+        otherLabel.font = [UIFont systemFontOfSize:22];
+        
+        [otherImage addSubview:otherLabel];
+        
+        LeftGesturesRecognizer3 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(accessoryPressed4)];
+        [LeftGesturesRecognizer3 setDirection:(UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionLeft)];
+        [otherImage addGestureRecognizer:LeftGesturesRecognizer3];
+        
+        
+        deleteButton1=[[UIButton alloc]initWithFrame:CGRectMake(450, 25, 0    , 50)];
+        [deleteButton1 setImage:[UIImage imageNamed:@"IM_delete_button.png"]forState:UIControlStateNormal];
+        //  [deleteButton1 setBackgroundImage:[UIImage imageNamed:@"IM_buttn_delete-press.png"]forState:UIControlStateHighlighted];
+        [deleteButton1 addTarget:self action:@selector(deletePressed1) forControlEvents:UIControlEventTouchUpInside];
+        deleteButton1.hidden=YES;
+        [breakfastImage addSubview:deleteButton1];
+        
+        deleteButton2=[[UIButton alloc]initWithFrame:CGRectMake(450, 25, 0    , 50)];
+        [deleteButton2 setImage:[UIImage imageNamed:@"IM_delete_button.png"]forState:UIControlStateNormal];
+        //  [deleteButton2 setBackgroundImage:[UIImage imageNamed:@"IM_buttn_delete-press.png"]forState:UIControlStateHighlighted];
+        [deleteButton2 addTarget:self action:@selector(deletePressed2) forControlEvents:UIControlEventTouchUpInside];
+        deleteButton2.hidden=YES;
+        [lunchImage addSubview:deleteButton2];
+        
+        deleteButton3=[[UIButton alloc]initWithFrame:CGRectMake(450, 25, 0    , 50)];
+        [deleteButton3 setImage:[UIImage imageNamed:@"IM_delete_button.png"]forState:UIControlStateNormal];
+        //  [deleteButton3 setBackgroundImage:[UIImage imageNamed:@"IM_buttn_delete-press.png"]forState:UIControlStateHighlighted];
+        [deleteButton3 addTarget:self action:@selector(deletePressed3) forControlEvents:UIControlEventTouchUpInside];
+        deleteButton3.hidden=YES;
+        [dinnerImage addSubview:deleteButton3];
+        
+        deleteButton4=[[UIButton alloc]initWithFrame:CGRectMake(450, 25, 0    , 50)];
+        [deleteButton4 setImage:[UIImage imageNamed:@"IM_delete_button.png"]forState:UIControlStateNormal];
+        //[deleteButton4 setBackgroundImage:[UIImage imageNamed:@"IM_buttn_delete-press.png"]forState:UIControlStateHighlighted];
+        [deleteButton4 addTarget:self action:@selector(deletePressed4) forControlEvents:UIControlEventTouchUpInside];
+        deleteButton4.hidden=YES;
+        [otherImage addSubview:deleteButton4];
+        
+        //    accessory1=[[UIButton alloc]initWithFrame:CGRectMake(258, 16.5, 20    , 20)];
+        //    [accessory1 setImage:[UIImage imageNamed:@"IM_delete-button-indicator.png"]forState:UIControlStateNormal];
+        //    [accessory1 addTarget:self action:@selector(accessoryPressed1) forControlEvents:UIControlEventTouchUpInside];
+        //    accessory1.hidden=NO;
+        //    [breakfastImage addSubview:accessory1];
+        //
+        //    accessory2=[[UIButton alloc]initWithFrame:CGRectMake(258, 16.5, 20    , 20)];
+        //    [accessory2 setImage:[UIImage imageNamed:@"IM_delete-button-indicator.png"]forState:UIControlStateNormal];
+        //    [accessory2 addTarget:self action:@selector(accessoryPressed2) forControlEvents:UIControlEventTouchUpInside];
+        //    [lunchImage addSubview:accessory2];
+        //
+        //    accessory3=[[UIButton alloc]initWithFrame:CGRectMake(258, 16.5, 20    , 20)];
+        //    [accessory3 setImage:[UIImage imageNamed:@"IM_delete-button-indicator.png"]forState:UIControlStateNormal];
+        //    [accessory3 addTarget:self action:@selector(accessoryPressed3) forControlEvents:UIControlEventTouchUpInside];
+        //    [dinnerImage addSubview:accessory3];
+        //
+        //    accessory4=[[UIButton alloc]initWithFrame:CGRectMake(258, 16.5, 20    , 20)];
+        //    [accessory4 setImage:[UIImage imageNamed:@"IM_delete-button-indicator.png"]forState:UIControlStateNormal];
+        //    [accessory4 addTarget:self action:@selector(accessoryPressed4) forControlEvents:UIControlEventTouchUpInside];
+        //    [otherImage addSubview:accessory4];
+        
+        removeDelete1=[[UIButton alloc]initWithFrame:CGRectMake(70, 0, 170    , 53)];
+        [removeDelete1 setBackgroundColor:[UIColor clearColor]];
+        [removeDelete1 addTarget:self action:@selector(removeDelete1) forControlEvents:UIControlEventTouchUpInside];
+        [breakfastImage addSubview:removeDelete1];
+        
+        removeDelete2=[[UIButton alloc]initWithFrame:CGRectMake(70, 0, 170    , 53)];
+        [removeDelete2 setBackgroundColor:[UIColor clearColor]];
+        [removeDelete2 addTarget:self action:@selector(removeDelete2) forControlEvents:UIControlEventTouchUpInside];
+        [lunchImage addSubview:removeDelete2];
+        
+        
+        removeDelete3=[[UIButton alloc]initWithFrame:CGRectMake(70, 0, 170    , 53)];
+        [removeDelete3 setBackgroundColor:[UIColor clearColor]];
+        [removeDelete3 addTarget:self action:@selector(removeDelete3) forControlEvents:UIControlEventTouchUpInside];
+        [dinnerImage addSubview:removeDelete3];
+        
+        removeDelete4=[[UIButton alloc]initWithFrame:CGRectMake(70, 0, 170    , 53)];
+        [removeDelete4 setBackgroundColor:[UIColor clearColor]];
+        [removeDelete4 addTarget:self action:@selector(removeDelete4) forControlEvents:UIControlEventTouchUpInside];
+        [otherImage addSubview:removeDelete4];
+        
+        
+        
+        dayImageView.userInteractionEnabled=YES;
+        [self.view addSubview:dayImageView];
+
+        
+    }
+    else
+    {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568)
     {
@@ -1396,7 +1686,7 @@ unsigned units = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit |
     [self.view addSubview:dayImageView];
     
 
-    }
+    }}
 
 }
 

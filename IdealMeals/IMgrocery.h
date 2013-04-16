@@ -16,12 +16,13 @@
     
     BOOL tabbarItem;
     UITableView *listTable;
-    
+    UIButton  *checkbox;
     IBOutlet UIView *menuView;
     sqlite3 *db;
     UIImageView *fadeScreen;
     int i;
    // int j;
+    UIButton *fullButton;
     UIImageView *frame;
     NSMutableArray *done;
     NSMutableArray *doneQty;
@@ -209,7 +210,7 @@
     UIImageView *base;
     
     NSString *emailBody;
-    
+        int x;
     NSMutableArray *emailArray;
     UIImageView *clearImage;
     UIButton *clearYes;
@@ -217,9 +218,11 @@
     
 }
 @property (strong, nonatomic) IBOutlet UIButton *emailButtonGrocery;
+@property (strong, nonatomic) IBOutlet UIButton  *fullButton;;
 @property (strong, nonatomic) IBOutlet UIButton *clearButtonGrocery;
 @property (strong, nonatomic) IBOutlet UIButton *addButtonGrocery;
 @property(nonatomic,retain)  UILabel *nameOfIngridient;
+@property(nonatomic,retain)   UIButton  *checkbox;
 @property(nonatomic,retain)  UIView *menuView;
 @property(nonatomic,retain) UILabel *ingridientQuantity;
 @property(nonatomic,retain)UIButton *saveButton;

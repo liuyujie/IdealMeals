@@ -14,7 +14,7 @@
 @end
 
 @implementation IMgrocery
-@synthesize Bool,nameOfIngridient,ingridientQuantity,saveButton,menuView,emailButtonGrocery,clearButtonGrocery,addButtonGrocery;
+@synthesize Bool,nameOfIngridient,ingridientQuantity,saveButton,menuView,emailButtonGrocery,clearButtonGrocery,addButtonGrocery,checkbox,fullButton;
 
 - (id)initWithCoder:(NSCoder*)aDecoder
 {
@@ -235,26 +235,9 @@
     listTable.separatorStyle=UITableViewCellSeparatorStyleNone;
     // [listTable setSeparatorColor:[UIColor lightGrayColor]];
     listTable.dataSource=self;
-//    UIImageView *frame=[[UIImageView alloc ]initWithFrame:CGRectMake(10, 97, 300, 326)];
-//    [frame setImage:[UIImage imageNamed:@"IM_grocerylist_listbox_frame-overlay.png" ]];
-    
-    //[listTable setShowsVerticalScrollIndicator:NO ];
     [self.view addSubview:listTable];
-   // [self.view addSubview:frame];
-
-   // CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568)
-    {
-        frame=[[UIImageView alloc ]initWithFrame:CGRectMake(12, 100, 296, 405)];
-        [frame setImage:[UIImage imageNamed:@"IM_i5_grocery-list_overlay.png" ]];
-
-    }
-    else{
-        frame=[[UIImageView alloc ]initWithFrame:CGRectMake(8, 95, 302, 326)];
-        [frame setImage:[UIImage imageNamed:@"IM_grocerylist_listbox_frame-overlay.png" ]];
-
-    }
-       [self.view addSubview:frame];
+  
+      
     UIStoryboardSegue *segue;
     IMProductList *vc = [segue destinationViewController];
     
@@ -262,6 +245,18 @@
     [[NSUserDefaults standardUserDefaults]setObject:vc.products forKey:@"productArray"];
     [[NSUserDefaults standardUserDefaults]synchronize];
    // NSLog(@"%@hhhh",vc.products);
+    if (screenBounds.size.height == 568)
+    {
+        frame=[[UIImageView alloc ]initWithFrame:CGRectMake(12, 100, 296, 405)];
+        [frame setImage:[UIImage imageNamed:@"IM_i5_grocery-list_overlay.png" ]];
+        
+    }
+    else{
+        frame=[[UIImageView alloc ]initWithFrame:CGRectMake(8, 95, 302, 326)];
+        [frame setImage:[UIImage imageNamed:@"IM_grocerylist_listbox_frame-overlay.png" ]];
+        
+    }
+     [self.view addSubview:frame];
     [self newfunction];
     [self hideActivityIndicater];
     
@@ -464,7 +459,7 @@ if (sqlite3_prepare(db, [sql UTF8String], -1, &statement, nil)==SQLITE_OK) {
                 {
                
                     char *field1=(char *) sqlite3_column_text(statement, 0);
-                    NSString *field1Str=[[ NSString alloc]initWithUTF8String:field1];
+                   NSString *field1Str= field1 == NULL ? nil :[[ NSString alloc]initWithUTF8String:field1];
                     
                     [newQuantity addObject:field1Str];
                 }
@@ -600,6 +595,11 @@ if (sqlite3_prepare(db, [sql UTF8String], -1, &statement, nil)==SQLITE_OK) {
 
         }
         else{
+            if (newQuantity.count>0) {
+                
+            
+            
+            
                     NSString *insertSQL=[NSString stringWithFormat:@"UPDATE info SET Quantity=('%@') WHERE No IS '%@'",[newQuantity objectAtIndex:0],[locations objectAtIndex:0]];
             sqlite3_stmt  *statement1;
         
@@ -621,7 +621,7 @@ if (sqlite3_prepare(db, [sql UTF8String], -1, &statement, nil)==SQLITE_OK) {
             //NSLog(@"%@",@"failed");
             
         }
-        
+            }
         }
         
     
@@ -1984,6 +1984,15 @@ NSDictionary *dictionary = [productArray objectAtIndex:section];
         UIButton *te6 = (UIButton *)[cell.contentView viewWithTag:9999999999];
         [te6 removeFromSuperview];
         te6 = nil;
+         int a=indexPath.section*500+indexPath.row ;
+        UIImageView *te7 = (UIImageView *)[cell.contentView viewWithTag:a];
+        [te removeFromSuperview];
+        te7 = nil;
+        UIButton *te8 = (UIButton *)[cell.contentView viewWithTag:9];
+        [te8 removeFromSuperview];
+        te8 = nil;
+        
+        
     }
 UIImageView *productimage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0 ,cell.frame.size.width,55 )];
     [productimage setTag:999];
@@ -2137,42 +2146,81 @@ UIImageView *productimage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0 ,cel
 //    UIButton *more=[[UIButton alloc]initWithFrame:CGRectMake(255, 15, 25, 25)];
 //    [more setTag:9999999];
 //    [more setImage:[UIImage imageNamed:@"IM_grocerylist_icon-more.png"] forState:UIControlStateNormal];
-   [checkbutton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+   
 //    [cell.contentView addSubview:more];
     
    // if ([[NSUserDefaults standardUserDefaults]boolForKey:@"done"]==YES) {
     
+       
+    checkbox=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 25, 25)];
+    [checkbox setImage:[UIImage imageNamed:@"IM_grocerylist_checkbox-checked.png"] forState:UIControlStateNormal];
+    [checkbox setTag:((indexPath.section & 0xFFFF) << 16) |
+     (indexPath.row & 0xFFFF)];
+    [checkbox setTag:9];
+    checkbox.hidden=YES;
+   // int a=indexPath.section*500+indexPath.row ;
+     // NSLog(@"%d",a);
+        
+    [cell.contentView addSubview:checkbox];
+//    
+     fullButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+    [fullButton setTag:((indexPath.section & 0xFFFF) << 16) |
+     (indexPath.row & 0xFFFF)];
+    
+    
+    //[fullButton setImage:[UIImage imageNamed:@"Naveen-bar.png"] forState:UIControlStateHighlighted];
+    [fullButton setBackgroundColor:[UIColor clearColor]];
+    [fullButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [fullButton addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchDown];
+      fullButton.titleLabel.text = cellValue;
+     [cell.contentView addSubview:fullButton];
     if ([done count]>0) {
         
-    
-    
+        
+        
         if (indexPath.section==[nameArray count]-1) {
             
-             checkButtonDone=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 25, 25)];
+            checkButtonDone=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 25, 25)];
             [checkButtonDone setTag:9999999999];
             productQty.textColor = [UIColor lightGrayColor];
-              productName.textColor = [UIColor lightGrayColor];
+            productName.textColor = [UIColor lightGrayColor];
             [checkButtonDone setImage:[UIImage imageNamed:@"IM_grocerylist_checkbox-completed.png"] forState:UIControlStateNormal];
             checkButtonDone.enabled=NO;
             checkButtonDone.userInteractionEnabled=NO;
-             [checkButtonDone addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
-           //cell.userInteractionEnabled=NO;
+            //[checkButtonDone addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+            //cell.userInteractionEnabled=NO;
             [cell.contentView addSubview:checkButtonDone];
-//            [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"done"];
-//            [[NSUserDefaults standardUserDefaults]synchronize];
+            //            [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"done"];
+            //            [[NSUserDefaults standardUserDefaults]synchronize];
+                        checkbutton.enabled=NO;
             
-        
+        }
     }
-    }
-    
-    
+
     return cell;
 }
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"helo");
+//    UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+//    NSLog(@"subviewss %@",[currentCell.contentView subviews] );
+//    [currentCell.contentView viewWithTag:9].hidden=NO;
+//}
+-(void)doneAction:(id)sender
 
--(void)doneAction
 {
+     UIButton *senderButton = (UIButton *)sender;
+    UITableViewCell *buttonCell = (UITableViewCell *)senderButton.superview.superview;
+    UITableView* table = (UITableView *)[buttonCell superview];
+    NSIndexPath* pathOfTheCell = [table indexPathForCell:buttonCell];
+   // NSInteger rowOfTheCell = [pathOfTheCell row];
+    
+    UITableViewCell *currentCell = [table cellForRowAtIndexPath:pathOfTheCell];
+    [currentCell.contentView viewWithTag:9].hidden=NO;
+    NSLog(@"%@",pathOfTheCell);
+    //[fullButton setImage:[UIImage imageNamed:@"Naveen-bar.png"] forState:UIControlStateHighlighted];
     
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
 	if(section == 0)
@@ -2229,10 +2277,15 @@ UIImageView *productimage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0 ,cel
 
 -(void)buttonTapped:(UIButton *)sender
 {
-   // NSLog(@"%@",sender.titleLabel.text);
-   // [checkbutton setImage:[UIImage imageNamed:@"IM_grocerylist_checkbox-checked.png"] forState:UIControlStateSelected];
     NSUInteger section = ((sender.tag >> 16) & 0xFFFF);
     NSUInteger row     = (sender.tag & 0xFFFF);
+    
+    int a=section*500+row ;
+    [checkbox viewWithTag: a].hidden=YES;
+    [checkbutton setImage:[UIImage imageNamed:@"IM_grocerylist_checkbox-checked.png"  ]forState:UIControlStateNormal];
+   // NSLog(@"%@",sender.titleLabel.text);
+   // [checkbutton setImage:[UIImage imageNamed:@"IM_grocerylist_checkbox-checked.png"] forState:UIControlStateSelected];
+   
     //NSLog(@"%d %d",section,row);
     //NSInteger section;
     NSDictionary *dictionary = [productArray objectAtIndex:section];
@@ -2251,7 +2304,7 @@ UIImageView *productimage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0 ,cel
                  // NSLog(@"%@",no);
     //NSString *nameString=[[NSString alloc]initWithFormat:@"%@",sender.titleLabel.text ];
                  NSString *nameString2=[[NSString alloc]initWithFormat:@"%@786",sender.titleLabel.text ];
-                  // NSLog(@"%@",nameString2);
+                  //NSLog(@"%@",nameString2);
     //[listTable reloadData];
     NSString *insertSQL=[NSString stringWithFormat:@"UPDATE info SET Type=('%@'), Name=('%@') WHERE No IS '%@'",@"done",nameString2,no];
     sqlite3_stmt  *statement1;
@@ -2279,11 +2332,7 @@ UIImageView *productimage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0 ,cel
     [self newfunction];
              
               
-              
-              
-              
-              
-              
+           
               
               
               
@@ -2627,7 +2676,7 @@ UIImageView *productimage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0 ,cel
 {
     tabbarItem=NO;
     [fadeScreen removeFromSuperview];
-    [frame removeFromSuperview];
+    //[frame removeFromSuperview];
     [clearYes removeFromSuperview];
      [clearNo removeFromSuperview];
     [clearImage removeFromSuperview];
